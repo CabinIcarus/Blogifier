@@ -30,7 +30,7 @@
                 <h2 class="post-grid-title">
                     <a class="post-grid-link" href="~/posts/@post.Slug">@post.Title</a>
                 </h2>
-                <p class="post-grid-desc">@Html.Raw(post.Description)</p>
+                <div class="post-grid-desc">@Html.Raw(post.Description)</div>
                 <div class="post-grid-meta d-flex">
                     <div class="post-grid-author">
                         <img class="post-grid-author-img" src="@post.Author.Avatar" width="16" height="16" alt="@post.Author.DisplayName">

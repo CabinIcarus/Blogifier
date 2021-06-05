@@ -52,12 +52,17 @@ namespace Blogifier.Controllers
 			model.Pager = new Pager(page, model.Blog.ItemsPerPage);
 
 			if (string.IsNullOrEmpty(term))
-			{
-				if (model.Blog.IncludeFeatured)
+            {
+                if (model.Blog.IncludeFeatured)
 					model.Posts = await _postProvider.GetList(model.Pager, 0, "", "FP");
 				else
 					model.Posts = await _postProvider.GetList(model.Pager, 0, "", "P");
-			}
+
+                foreach (var modelPost in model.Posts)
+                {
+                    modelPost.Description = modelPost.Description.MdToHtml();
+                }
+            }
 			else
 			{
 				model.PostListType = PostListType.Search;
