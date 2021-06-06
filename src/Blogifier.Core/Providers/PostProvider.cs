@@ -237,6 +237,12 @@ namespace Blogifier.Core.Providers
 
             // sanitize HTML fields
             post.Content = post.Content.RemoveScriptTags();
+
+            if (string.IsNullOrWhiteSpace(post.Description))
+            {
+                post.Description = post.Content.MdTrim();
+            }
+
             post.Description = post.Description.RemoveScriptTags();
 
 			await _db.Posts.AddAsync(post);
@@ -251,6 +257,12 @@ namespace Blogifier.Core.Providers
 
 			existing.Slug = post.Slug;
 			existing.Title = post.Title;
+
+            if (string.IsNullOrWhiteSpace(post.Description))
+            {
+                post.Description = post.Content.MdTrim();
+            }
+
 			existing.Description = post.Description.RemoveScriptTags();
 			existing.Content = post.Content.RemoveScriptTags();
 			existing.Cover = post.Cover;

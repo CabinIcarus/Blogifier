@@ -201,6 +201,25 @@ namespace Blogifier.Core.Extensions
          return str;
       }
 
+      public static string MdTrim(this string mdStr, int maxCount = 50)
+      {
+          var md = Markdown.Parse(mdStr);
+
+          var count = 0;
+
+          foreach (var block in md)
+          {
+              count += block.Span.Length;
+
+              if (count >= maxCount)
+              {
+                  break;
+              }
+          }
+
+          return mdStr.Substring(0, count);
+      }
+
       public static string SanitizeFileName(this string str)
       {
          str = str.SanitizePath();

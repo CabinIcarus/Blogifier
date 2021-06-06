@@ -140,9 +140,6 @@
        if(string.IsNullOrEmpty(Post.Cover))
            Post.Cover = Constants.DefaultCover;
 
-       if (string.IsNullOrEmpty(Post.Description))
-           Post.Description = Post.Title;
-
        if (string.IsNullOrEmpty(Post.Title) || string.IsNullOrEmpty(Post.Content))
        {
            _toaster.Error(_localizer["title-content-required"]);
